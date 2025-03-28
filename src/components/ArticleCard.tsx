@@ -44,12 +44,15 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, size = "medium" }) =
 
   const sizeClasses = getSizeClasses();
 
+  // Use placeholder image instead of article.imageUrl
+  const placeholderImage = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b";
+
   return (
     <Card className={`overflow-hidden ${sizeClasses.card} transition-all hover:shadow-lg`}>
       <Link to={`/article/${article.slug}`}>
         <div className={`${sizeClasses.image} w-full relative overflow-hidden`}>
           <img
-            src={article.imageUrl}
+            src={placeholderImage}
             alt={article.title}
             className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
           />

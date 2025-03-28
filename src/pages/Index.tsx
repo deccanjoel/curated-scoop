@@ -6,6 +6,7 @@ import ArticleCard from "@/components/ArticleCard";
 import SearchBox from "@/components/SearchBox";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 import { getFeaturedArticles, getRecentArticles, getCategories, getArticlesByCategory } from "@/data/articleData";
 
 const Index = () => {
@@ -28,19 +29,20 @@ const Index = () => {
       </section>
 
       <section className="container mx-auto px-4 py-12">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-10">
           <div>
-            <h2 className="text-3xl font-bold mb-2">Latest News</h2>
-            <p className="text-muted-foreground">Stay updated with the most recent stories</p>
+            <h2 className="text-4xl font-bold mb-2">Latest News</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl">Stay updated with the most recent stories and insights from around the world</p>
           </div>
-          <Link to="/news">
-            <Button variant="outline" className="mt-4 md:mt-0">
+          <Link to="/news" className="group">
+            <Button variant="outline" className="mt-4 md:mt-0 transition-all group-hover:translate-x-1">
               View All Articles
+              <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
             </Button>
           </Link>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {recentArticles.map((article) => (
             <ArticleCard key={article.id} article={article} />
           ))}
@@ -60,9 +62,10 @@ const Index = () => {
                 <ArticleCard article={article} size="small" />
                 <Link 
                   to={`/news/${article.category.toLowerCase()}`}
-                  className="mt-4 text-center text-primary hover:text-primary/80 font-medium"
+                  className="mt-4 text-center text-primary hover:text-primary/80 font-medium group flex items-center justify-center"
                 >
-                  More in {article.category} →
+                  More in {article.category}
+                  <ArrowRight size={16} className="ml-1 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
             ))}
